@@ -9,18 +9,25 @@ def transform_indices(array):
     return np.array(list_idx)
 
 
-def get_candidates(board):
-    idx = np.where(board == -1)
-    idx = transform_indices(idx)
-    total_positions = idx.shape[0]
+def get_candidate(board):
+    # Get all the positions without a number
+    idx = transform_indices(array=np.where(board == -1))
+    total_empty_cells = idx.shape[0]
     found = False
-    list_candidates = []
     i = 0
-    while not found and i < total_positions:
+    while not found and i < total_empty_cells:
+        # Get the empty cell
+        # Get all numbers in the row
+        # Get all numbers in the column
+        # Get all numbers in the square
+        # Join them (J)
+        # Get the difference between {1, 2, ..., 9} and J
+        # If there is a candiate, stop and store it
+        # Otherwise, keep loopong
         i += 1
 
-    # If there are candidates, it must return:
-    #   (found = True, [[row0, col0, number0], [row1, col1, number1], ...])
+    # If there is a candidate, return:
+    #   (found = True, [[row, col, number])
     # Otherwise:
     #   (found = False, [[-1, -1, -1]])
     return False, np.array([[]])
@@ -37,12 +44,12 @@ def recursive_sudoku(board, initial_indices):
     else:
         print("Not finished")
         # Look for all condidates
-        found, candidates = get_candidates(board=board)
-        print(found, candidates)
+        found, candidate = get_candidate(board=board)
+        print(found, candidate)
 
         # If no candidate, then delete one non-initial position at random
         # Return the board after deleting
-        # If there are candidates, tale one randonmly and return the board
+        # If there is a candidate, tale one randonmly and return the board
 
 
 def solve_sudoku(board):
